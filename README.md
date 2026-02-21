@@ -127,69 +127,41 @@ DIVVY PROJECT/
 ### 1. Install Dependencies
 
 ```bash
-pip install pandas numpy seaborn matplotlib scipy folium
+pip install pandas matplotlib seaborn pathlib
 ```
 
-### 2. Add Raw Data
+##  How to Run the Analysis
 
-Place Divvy trip data CSVs into the `data/raw/` directory. Data is available from the [Divvy Trip Data Portal](https://divvy-tripdata.s3.amazonaws.com/index.html).
+The analysis is broken down into a sequence of numbered scripts/notebooks. Run them in order:
 
-### 3. Run the Full Pipeline
+1.  **`1_Master_dataset_cleaned.ipynb`**: Merges raw data and performs initial cleaning.
+2.  **`2_Causal_Members_only_Filter.ipynb`**: Creates a focused dataset of casual riders.
+3.  **`3_Habitual_score.ipynb`**: Calculates habitual scores for stations based on ride frequency and consistency.
+4.  **`4_Behavioral_Score.ipynb`**: Refines scores into "Strong Mirror", "Moderate Mirror", etc.
+5.  **`5_Station_level_Segmentation.ipynb`**: Final segmentation of stations into Anchors vs. Noise.
+6.  **`6_Hourly_statistical_Validation.ipynb`**: Prepares data for hourly comparison validation.
+7.  **`7_Segmentation_Reliability_Test.ipynb`**:Calculates statistical metrics to validate the segments.
+8.  **`8_Portfolio_distribution.ipynb`**: Visualizes the distribution of station segments.
+9.  **`9_Classification_graph.ipynb`**: Visualizes Density vs. Consistency.
+10. **`10_Anchor_vs_Noise_Hourly_Comparison.ipynb`**: Creates a DNA chart comparing hourly patterns.
+11. **`11_Actionable_insights.ipynb`**: Identifies the top 10 high-value conversion targets.
 
-Run the following scripts in stages:
+### Extra Validation
+Located in `Scripts/Extra Validation/`:
+*   `Extra_Validation_1_Casual_only_validation.ipynb`: Validates the quality of the casual-only dataset.
+*   `Extra_Validation_2_Mirror_validation.ipynb`: validation of member-mirroring behavior.
 
-```powershell
-cd Scripts
-python pipeline.py                  # Stage 1
-python habitual_analysis.py         # Stage 2
-python behavioral_refinement.py     # Stage 3
-python station_segmentation.py      # Stage 4
-python mirror_correlation.py        # Stage 5
-python generate_visuals.py          # Stage 6
-```
+## Results
 
-### 4. Open the Dashboard
+The analysis produces several key visualizations in the `Results/` folder, including:
+*   `portfolio_distribution.png`: Breakdown of station segments.
+*   `behavioral_anchor_map.png`: Strategic map of station density vs. consistency.
+*   `anchor_vs_noise_dna.png`: Hourly ride comparison showing the "commuter signal".
+*   `top_10_anchor_stations.png`: Leaderboard of top stations for marketing targeting.
 
-Open `Cyclistic_Dashboard.pbix` in Power BI Desktop to explore the interactive visualizations.
-
----
-
-##  Strategic Framework
-
-| Concept | Description |
-|---|---|
-| **Twin Peaks Signal** | Ridership concentrations during the 8 AM and 5 PM windows — the behavioral fingerprint of habitual commuters |
-| **Behavioral DNA Profile** | A 24-hour hourly ridership distribution curve unique to each station, used to classify rider behavior |
-| **Mirror Verdict** | A station passes when its casual rider DNA profile statistically mirrors the member DNA profile |
-| **Density vs. Consistency** | Stations are ranked not just by trip volume, but by how *reliably* they maintain mirroring status over time |
-| **Conversion Window** | Data shows 67% member share during peak hours at Anchor stations — the optimal time for on-site activation |
-
----
-
-## 📐 Methodology
-
-1. **Data Ingestion** — 13 months of Divvy trip records (~5.8M+ rides) are cleaned, normalized, and enriched with temporal features.
-2. **Commute Detection** — Trips are flagged as commute rides based on time-of-day, day-of-week, and duration thresholds.
-3. **Routine Scoring** — Each station receives a "Routine Score" measuring the concentration of commute-like behavior among casual riders.
-4. **Behavioral Normalization** — Scores are scaled and compared against the member baseline to produce a mirror verdict.
-5. **Portfolio Segmentation** — Stations are classified into Anchor / Emerging / Noise categories based on scoring thresholds.
-6. **Statistical Validation** — Pearson correlation and reliability tests confirm the robustness of identified Anchor stations.
-7. **Visualization & Dashboard** — Results are exported as production charts and loaded into an interactive Power BI dashboard.
+## Key Findings (Example)
+*   **Behavioral Anchors**: A subset of stations shows strong "commuter" patterns among casual riders, mirroring annual members.
+*   **Actionable Strategy**: Marketing efforts should be targeted at these specific "Behavioral Anchor" stations during peak commuting hours (7-9 AM, 4-6 PM) to maximize conversion rates.
 
 ---
-
-## 📄 Data Source
-
-This project uses publicly available trip data from **Divvy** (operated by Lyft), Chicago's bike-share system.
-
-- **Source:** [Divvy Trip Data](https://divvy-tripdata.s3.amazonaws.com/index.html)
-- **License:** Data provided under the [Divvy Data License Agreement](https://divvybikes.com/data-license-agreement)
-- **Period:** December 2024 – December 2025 (13 months)
-
----
-
-<div align="center">
-
-*Built as part of the Google Data Analytics Professional Certificate Capstone Project.*
-
-</div>
+*Created by [Your Name/Team Name]*
