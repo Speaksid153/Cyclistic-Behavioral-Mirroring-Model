@@ -45,17 +45,6 @@ The model segments Chicago's 1,500+ bike stations into three actionable portfoli
 - **Twin Peaks Signal** validated across 13 months of trip data (Dec 2024 – Dec 2025)
 - **Pearson Correlation** confirms statistically significant behavioral similarity between casual and member profiles at Anchor stations
 
-###  Visualizations
-
-| | |
-|---|---|
-| ![Strategic Anchor Map](results/behavioral_anchor_map.png) | ![Hourly DNA Profiles](results/anchor_vs_noise_dna.png) |
-| *Geographic distribution of Strategic Anchors across Chicago* | *Hourly ridership DNA: Anchor stations vs. Noise stations* |
-| ![Top Conversion Targets](results/top_anchor_leaderboard.png) | ![Portfolio Distribution](results/portfolio_distribution.png) |
-| *Top-ranked stations by conversion potential* | *Portfolio segmentation breakdown* |
-
----
-
 ## Interactive Dashboard
 
 > **File:** [`Cyclistic_Dashboard.pbix`](Cyclistic_Dashboard.pbix)
