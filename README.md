@@ -6,6 +6,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Pandas](https://img.shields.io/badge/Pandas-2.0+-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org)
 [![Power BI](https://img.shields.io/badge/Power_BI-Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
@@ -17,7 +18,7 @@
 
 ##  Project Overview
 
-Traditional bike-share marketing targets **high-traffic tourist stations** for membership conversionn a brute-force approach with low ROI. This project takes a fundamentally different approach.
+Traditional bike-share marketing targets **high-traffic tourist stations** for membership conversion — a brute-force approach with low ROI. This project takes a fundamentally different approach.
 
 The **Behavioral Mirroring Model** shifts the focus from **volume** to **velocity of habit**. By constructing hourly ridership "DNA profiles" for every station, the model identifies locations where casual riders already exhibit the **"Twin Peaks"** commuting pattern (8 AM and 5 PM rush-hour spikes) characteristic of existing annual members.
 
@@ -67,26 +68,27 @@ A fully interactive **Power BI Dashboard** accompanies this analysis, providing 
 
 ##  Analytics Pipeline Architecture
 
-The analysis is powered by a modular **6-stage Python pipeline**, with additional scripts for validation and geospatial analysis:
+The analysis is powered by a modular **6-stage Jupyter Notebook pipeline**, with additional notebooks for validation and geospatial analysis. All notebooks are located in the `Notebooks/` directory.
 
+### Core Pipeline
 
-| Stage | Script | Purpose |
+| Stage | Notebook | Purpose |
 |:---:|---|---|
-| 1 | `pipeline.py` | Data ingestion, cleaning, schema normalization, and feature engineering |
-| 2 | `habitual_analysis.py` | Calculates station-level "Routine Scores" based on rush-hour consistency |
-| 3 | `behavioral_refinement.py` | Normalizes scores and applies mirror-verdict classification logic |
-| 4 | `station_segmentation.py` | Finalizes portfolio categorization (Anchors vs. Emerging vs. Noise) |
-| 5 | `mirror_correlation.py` | Validates high-value targets via Pearson correlation analysis |
-| 6 | `generate_visuals.py` | Produces production-ready charts and maps for stakeholder review |
+| 1 | `pipeline.ipynb` | Data ingestion, cleaning, schema normalization, and feature engineering |
+| 2 | `habitual_analysis.ipynb` | Calculates station-level "Routine Scores" based on rush-hour consistency |
+| 3 | `behavioral_refinement.ipynb` | Normalizes scores and applies mirror-verdict classification logic |
+| 4 | `station_segmentation.ipynb` | Finalizes portfolio categorization (Anchors vs. Emerging vs. Noise) |
+| 5 | `mirror_correlation.ipynb` | Validates high-value targets via Pearson correlation analysis |
+| 6 | `generate_visuals.ipynb` | Produces production-ready charts and maps for stakeholder review |
 
-### Supporting Scripts
+### Validation & Supporting Notebooks
 
-| Script | Purpose |
+| Notebook | Purpose |
 |---|---|
-| `geospatial_analysis.py` | Spatial metrics and geographic clustering analysis |
-| `data_integrity_check.py` | Pre-pipeline data quality validation |
-| `reliability_test.py` | Statistical reliability testing of model outputs |
-| `statistical_validation.py` | Hypothesis testing and p-value validation |
+| `geospatial_analysis.ipynb` | Spatial metrics and geographic clustering analysis |
+| `data_integrity_check.ipynb` | Pre-pipeline data quality validation |
+| `reliability_test.ipynb` | Statistical reliability testing of model outputs |
+| `statistical_validation.ipynb` | Hypothesis testing and p-value validation |
 
 ---
 
@@ -94,74 +96,84 @@ The analysis is powered by a modular **6-stage Python pipeline**, with additiona
 
 ```
 DIVVY PROJECT/
-├── Cyclistic_Dashboard.pbix
-├── README.md
-├── .gitignore
-├── Scripts/
-│   ├── pipeline.py
-│   ├── habitual_analysis.py
-│   ├── behavioral_refinement.py
-│   ├── station_segmentation.py
-│   ├── mirror_correlation.py
-│   ├── generate_visuals.py
-│   ├── geospatial_analysis.py
-│   ├── data_integrity_check.py
-│   ├── reliability_test.py
-│   └── statistical_validation.py
+├── Notebooks/
+│   ├── pipeline.ipynb
+│   ├── habitual_analysis.ipynb
+│   ├── behavioral_refinement.ipynb
+│   ├── station_segmentation.ipynb
+│   ├── mirror_correlation.ipynb
+│   ├── generate_visuals.ipynb
+│   ├── geospatial_analysis.ipynb
+│   ├── data_integrity_check.ipynb
+│   ├── reliability_test.ipynb
+│   └── statistical_validation.ipynb
 ├── data/
 │   ├── raw/
 │   └── processed/
-└── results/
+├── results/
+├── Cyclistic_Dashboard.pbix
+├── LICENSE
+└── README.md
 ```
 
 ---
-
 
 ##  Execution Guide
 
 ### Prerequisites
 
 - **Python 3.10+**
+- **Jupyter Notebook** or **JupyterLab**
 - **Power BI Desktop** (for dashboard interaction)
 
 ### 1. Install Dependencies
 
 ```bash
-pip install pandas matplotlib seaborn pathlib
+pip install pandas matplotlib seaborn jupyter
 ```
 
-##  How to Run the Analysis
+### 2. Run the Pipeline
 
-The analysis is broken down into a sequence of numbered scripts/notebooks. Run them in order:
+Launch Jupyter and execute the notebooks **in order** from the `Notebooks/` directory:
 
-1.  **`1_Master_dataset_cleaned.ipynb`**: Merges raw data and performs initial cleaning.
-2.  **`2_Causal_Members_only_Filter.ipynb`**: Creates a focused dataset of casual riders.
-3.  **`3_Habitual_score.ipynb`**: Calculates habitual scores for stations based on ride frequency and consistency.
-4.  **`4_Behavioral_Score.ipynb`**: Refines scores into "Strong Mirror", "Moderate Mirror", etc.
-5.  **`5_Station_level_Segmentation.ipynb`**: Final segmentation of stations into Anchors vs. Noise.
-6.  **`6_Hourly_statistical_Validation.ipynb`**: Prepares data for hourly comparison validation.
-7.  **`7_Segmentation_Reliability_Test.ipynb`**:Calculates statistical metrics to validate the segments.
-8.  **`8_Portfolio_distribution.ipynb`**: Visualizes the distribution of station segments.
-9.  **`9_Classification_graph.ipynb`**: Visualizes Density vs. Consistency.
-10. **`10_Anchor_vs_Noise_Hourly_Comparison.ipynb`**: Creates a DNA chart comparing hourly patterns.
-11. **`11_Actionable_insights.ipynb`**: Identifies the top 10 high-value conversion targets.
+```bash
+jupyter notebook Notebooks/
+```
 
-### Extra Validation
-Located in `Scripts/Extra Validation/`:
-*   `Extra_Validation_1_Casual_only_validation.ipynb`: Validates the quality of the casual-only dataset.
-*   `Extra_Validation_2_Mirror_validation.ipynb`: validation of member-mirroring behavior.
+| Order | Notebook | Description |
+|:---:|---|---|
+| 1 | `pipeline.ipynb` | Merges raw data and performs initial cleaning |
+| 2 | `habitual_analysis.ipynb` | Calculates habitual scores for stations |
+| 3 | `behavioral_refinement.ipynb` | Refines scores into mirror-verdict categories |
+| 4 | `station_segmentation.ipynb` | Final segmentation into Anchors vs. Noise |
+| 5 | `mirror_correlation.ipynb` | Pearson correlation validation of targets |
+| 6 | `generate_visuals.ipynb` | Generates all production-ready visualizations |
+
+### 3. Validation Notebooks (Optional)
+
+Run these independently for additional quality checks:
+
+- `data_integrity_check.ipynb` — Pre-pipeline data quality validation
+- `geospatial_analysis.ipynb` — Spatial metrics and geographic clustering
+- `reliability_test.ipynb` — Statistical reliability of model outputs
+- `statistical_validation.ipynb` — Hypothesis testing and p-value validation
+
+---
 
 ## Results
 
-The analysis produces several key visualizations in the `Results/` folder, including:
-*   `portfolio_distribution.png`: Breakdown of station segments.
-*   `behavioral_anchor_map.png`: Strategic map of station density vs. consistency.
-*   `anchor_vs_noise_dna.png`: Hourly ride comparison showing the "commuter signal".
-*   `top_10_anchor_stations.png`: Leaderboard of top stations for marketing targeting.
+The analysis produces key visualizations in the `results/` folder:
 
-## Key Findings (Example)
-*   **Behavioral Anchors**: A subset of stations shows strong "commuter" patterns among casual riders, mirroring annual members.
-*   **Actionable Strategy**: Marketing efforts should be targeted at these specific "Behavioral Anchor" stations during peak commuting hours (7-9 AM, 4-6 PM) to maximize conversion rates.
+| File | Description |
+|---|---|
+| `behavioral_anchor_map.png` | Strategic map of station density vs. consistency |
+| `anchor_vs_noise_dna.png` | Hourly ride comparison showing the "commuter signal" |
+| `top_anchor_leaderboard.png` | Leaderboard of top stations for marketing targeting |
+| `portfolio_distribution.png` | Breakdown of station segments |
+
+## Key Findings
+
+- **Behavioral Anchors**: A subset of stations shows strong "commuter" patterns among casual riders, mirroring annual members.
+- **Actionable Strategy**: Marketing efforts should be targeted at these specific "Behavioral Anchor" stations during peak commuting hours (7–9 AM, 4–6 PM) to maximize conversion rates.
 
 ---
-*Created by [Your Name/Team Name]*
