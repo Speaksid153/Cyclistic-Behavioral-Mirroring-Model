@@ -84,7 +84,7 @@ The analysis is powered by a modular **6-stage Jupyter Notebook pipeline**, with
 ##  Repository Structure
 
 ```
-DIVVY PROJECT/
+Cyclistic Behavioral Mirroring Model/
 ├── Notebooks/
 │   ├── pipeline.ipynb
 │   ├── habitual_analysis.ipynb
